@@ -4,22 +4,11 @@ import './index.css';
 
 // ToDo App Component
 class ToDoApp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      createToDoArea: "Add New ToDo",
-      displayToDoListArea: "ToDo List",
-    }
-  }
-
   render() {
     return(
       <div>
         <div className="todo-app">
-          <h2>{this.state.createToDoArea}</h2>
           <ToDoCreator />
-
-          <h2>{this.state.displayToDoListArea}</h2>
           <ToDoList />
         </div>
       </div>
@@ -29,10 +18,24 @@ class ToDoApp extends React.Component {
 
 // ToDo Creator Component
 class ToDoCreator extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      areaTitle: "Create New Todo",
+    }
+  }
   render() {
     return(
-      <div>
-
+      <div className="container">
+        <div className="jumbotron">
+          <h2>{this.state.areaTitle}</h2>
+          <div className="input-group mb-3">
+            <input type="text" className="form-control" />
+            <div className="input-group-append">
+              <button className="btn btn-outline-primary" type="button">Create</button>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -40,10 +43,30 @@ class ToDoCreator extends React.Component {
 
 // ToDo List Component
 class ToDoList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      areaTitle: "ToDo List",
+      //todos: Array().fill(null),
+      todos: ["hoge","hoge","hoge","hoge"],
+    }
+  }
+
+  createToDoList(todos) {
+    const todoList = todos.map((todo) => {
+        return <li>{todo}</li>
+      }
+    );
+
+    return(
+      <ul>{todoList}</ul>
+    );
+  }
+
   render() {
     return(
-      <div>
-        
+      <div className="todo-list">
+        {this.createToDoList(this.state.todos)}
       </div>
     );
   }
