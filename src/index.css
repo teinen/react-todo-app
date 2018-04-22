@@ -2,15 +2,42 @@ h2 {
   text-align: center;
 }
 
+/* todo list area */
 .todo-list {
   text-align: center;
 }
 
+.todo-list-content {
+  width: 50%;
+}
+
+.todo-item {
+  font-size: 1.5em;
+}
+
+.list-group-item {
+  overflow: scroll;
+}
+
+.todo-check-button {
+  float: left;
+}
+
+.todo-delete-button {
+  float: right;
+}
+
+/* todo item */
+.finished {
+  color: gray;
+}
+
 /* create new todo area */
 .createToDoArea {
+  width: 70%;
   margin-top: 20px;
 }
 
-.createButton {
+.create-button {
   margin-top: 10px;
 }
