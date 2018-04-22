@@ -5,3 +5,12 @@ h2 {
 .todo-list {
   text-align: center;
 }
+
+/* create new todo area */
+.createToDoArea {
+  margin-top: 20px;
+}
+
+.createButton {
+  margin-top: 10px;
+}
