@@ -7,8 +7,10 @@ class ToDoApp extends React.Component {
   constructor(props) {
     super(props);
 
-    this.bindFunc1 = this.addToDo.bind(this);
-    this.bindFunc2 = this.changeStatus.bind(this);
+    // bimd each function
+    this.bindAddToDoFunc = this.addToDo.bind(this);
+    this.bindChangeStatusFunc = this.changeStatus.bind(this);
+    this.bindDeleteToDoFunc = this.deleteToDo.bind(this);
 
     this.state = {
       todos: [
@@ -52,16 +54,29 @@ class ToDoApp extends React.Component {
     });
   }
 
+  // Delete ToDo
+  deleteToDo(i) {
+    const todos = this.state.todos.slice();
+
+    // delete target todo
+    todos.splice(i, 1);
+
+    this.setState({
+      todos: todos,
+    });
+  }
+
   render() {
     return(
       <div>
         <div className="todo-app">
           <ToDoCreator
-            addToDo={this.bindFunc1}
+            addToDo={this.bindAddToDoFunc}
           />
           <ToDoList
             todos={this.state.todos}
-            onClick={this.bindFunc2}
+            changeStatus={this.bindChangeStatusFunc}
+            deleteToDo={this.bindDeleteToDoFunc}
           />
         </div>
       </div>
@@ -127,7 +142,7 @@ class ToDoList extends React.Component {
   }
 
   renderItem(todo) {
-    if(todo.status == true) {
+    if(todo.status === true) {
       return (
         <span className="todo-item finished">
           <del>{todo.itemName}</del>
@@ -147,9 +162,10 @@ class ToDoList extends React.Component {
         return (
           <li key={i} className="list-group-item align-middle">
             <button type="button" className="btn btn-success todo-check-button"
-              id={i} onClick={() => {this.props.onClick(i)}}>DONE</button>
+              id={i} onClick={() => {this.props.changeStatus(i)}}>DONE</button>
             {this.renderItem(todo)}
-            <button type="button" className="btn btn-danger todo-delete-button">DEL</button>
+            <button type="button" className="btn btn-danger todo-delete-button"
+              onClick={() => {this.props.deleteToDo(i)}}>DEL</button>
           </li>
         );
       }
