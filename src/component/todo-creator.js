@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 // ToDo Creator Component
 export default class ToDoCreator extends React.Component {

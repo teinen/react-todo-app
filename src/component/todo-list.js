@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 // ToDo List Component
 export default class ToDoList extends React.Component {
